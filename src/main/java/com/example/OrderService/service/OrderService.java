@@ -19,12 +19,17 @@ public class OrderService {
 
     public Order processOrderRequest(OrderRequest orderRequest) {
         // Fetch product by ID
+        if (orderRequest.getQuantity() < 1) {
+            throw new IllegalArgumentException("Product quantity must be greater than zero");
+        }
+
         Product product = productService.findProductById(orderRequest.getProductId());
 
         // Check if the product exists
         if (product == null) {
             throw new IllegalArgumentException("Product not found with id: " + orderRequest.getProductId());
         }
+
 
         // Check product quantity availability
         if (product.getQuantity() < orderRequest.getQuantity()) {

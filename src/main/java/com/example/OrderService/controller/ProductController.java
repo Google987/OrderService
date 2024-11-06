@@ -22,20 +22,9 @@ public class ProductController {
 
     @PostMapping("/")
     public ResponseEntity<Product> addProduct(@RequestBody ProductRequest productRequest) {
-        // Ensure the product name is not empty or null
-        if (productRequest.getName() == null || productRequest.getName().trim().isEmpty()) {
-            throw new IllegalArgumentException("Product name is required");
-        }
-
-        // Create a new Product object from the request data
-        Product product = new Product(
-                productRequest.getName(),
-                productRequest.getPrice(),
-                productRequest.getQuantity()
-        );
 
         // Save the product using the service
-        Product savedProduct = productService.addProduct(product);
+        Product savedProduct = productService.addProduct(productRequest);
 
         // Return the saved product with a 201 Created status
         return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
