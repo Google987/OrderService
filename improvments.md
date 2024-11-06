@@ -1,4 +1,12 @@
 improvments:
-- add users table, so that every order can be linked with a user
+- add users table, so that every order can be linked with an user
 - allow multiple proudcts in one order
 - more specific exception hanlding for different errors and validations (instead of only GlobalExceptionHandler)
+- product service (inventory management service) could be a seperate project (microservice)
+- notificatin service to send updates to the sellers and users 
+
+
+host: sunkingdb.cfq6yisy4bzh.ap-south-1.rds.amazonaws.com
+port: 3306
+username: admin
+password: arifkhan

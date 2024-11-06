@@ -38,5 +38,26 @@ public class ProductService {
         );
         return productRepository.save(product);
     }
+
+    public Product reduceProductQuantity(Long productId, int quantity) {
+        Product product = findProductById(productId);
+        
+        if (product == null) {
+            throw new IllegalArgumentException("Product not found with id: " + productId);
+        }
+
+        if (product.getQuantity() < quantity) {
+            throw new IllegalArgumentException("Insufficient product quantity available");
+        }
+
+        //TODO: if the new product quantity is less than 10, send notification to the seller 
+
+        // Reduce quantity
+        product.setQuantity(product.getQuantity() - quantity);
+        return productRepository.save(product);
+    }
+
+    // update product 
+
 }
 
