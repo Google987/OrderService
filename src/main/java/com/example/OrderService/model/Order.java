@@ -1,6 +1,8 @@
 package com.example.OrderService.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,12 +22,14 @@ public class Order {
 
     private int quantity;
     private double price;
-    private String status;
+    
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
 
     // Constructors
     public Order() {}
 
-    public Order(Product product, int quantity, double price, String status) {
+    public Order(Product product, int quantity, double price, OrderStatus status) {
         this.product = product;
         this.quantity = quantity;
         this.price = price;
@@ -65,11 +69,11 @@ public class Order {
         this.price = price;
     }
 
-    public String getStatus() {
+    public OrderStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(OrderStatus status) {
         this.status = status;
     }
 }

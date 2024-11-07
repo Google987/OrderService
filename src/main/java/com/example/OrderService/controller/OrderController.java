@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.OrderService.dto.OrderRequest;
 import com.example.OrderService.model.Order;
+import com.example.OrderService.model.OrderStatus;
 import com.example.OrderService.service.OrderService;
 
 @RestController
@@ -32,7 +33,7 @@ public class OrderController {
     }
 
     @PutMapping("/{orderId}/status")
-    public Order updateOrderStatus(@PathVariable Long orderId, @RequestParam String status) {
+    public Order updateOrderStatus(@PathVariable Long orderId, @RequestParam OrderStatus status) {
         return orderService.updateOrderStatus(orderId, status);
     }
 }
