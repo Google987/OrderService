@@ -4,6 +4,7 @@ improvments:
 - more specific exception hanlding for different errors and validations (instead of only GlobalExceptionHandler)
 - product service (inventory management service) could be a seperate project (microservice)
 - notificatin service to send updates to the sellers and users 
+- logging
 
 
 host: sunkingdb.cfq6yisy4bzh.ap-south-1.rds.amazonaws.com

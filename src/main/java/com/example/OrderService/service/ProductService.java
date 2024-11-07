@@ -39,7 +39,7 @@ public class ProductService {
             throw new IllegalArgumentException("Insufficient product quantity available");
         }
 
-        //TODO: if the new product quantity is less than 10, send notification to the seller 
+        //TODO (later): if the new product quantity is less than 10, send notification to the seller 
 
         // Reduce quantity
         product.setQuantity(product.getQuantity() - quantity);

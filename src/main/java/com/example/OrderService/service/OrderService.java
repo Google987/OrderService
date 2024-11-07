@@ -38,6 +38,15 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-    // update order status (also send notification to the user)
+    @Transactional
+    public Order updateOrderStatus(Long orderId, String status) {
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new IllegalArgumentException("Order not found with ID: " + orderId));
 
+        order.setStatus(status);
+        
+        //TODO (later): implement logic for sending notification to the user
+        
+        return orderRepository.save(order);
+    }
 }
