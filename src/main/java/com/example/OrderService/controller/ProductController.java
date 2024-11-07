@@ -22,12 +22,14 @@ public class ProductController {
 
     @PostMapping("/")
     public ResponseEntity<Product> addProduct(@RequestBody ProductRequest productRequest) {
-
-        // Save the product using the service
         Product savedProduct = productService.addProduct(productRequest);
-
-        // Return the saved product with a 201 Created status
         return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody ProductRequest productRequest) {
+        Product updatedProduct = productService.updateProduct(id, productRequest);
+        return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
     }
 
 }

@@ -17,19 +17,8 @@ public class ProductService {
     }
 
     public Product addProduct(ProductRequest productRequest) {
-        // Ensure the product name is not empty or null
-        if (productRequest.getName() == null || productRequest.getName().trim().isEmpty()) {
-            throw new IllegalArgumentException("Product name is required");
-        }
-
-        if (productRequest.getQuantity() < 0) {
-            throw new IllegalArgumentException("Product quantity cannot be less than zero");
-        }
-
-        if (productRequest.getPrice() < 0) {
-            throw new IllegalArgumentException("Product price cannot be less than zero");
-        }
-
+        validateProductRequest(productRequest);
+        
         // Create a new Product object from the request data
         Product product = new Product(
                 productRequest.getName(),
@@ -57,7 +46,38 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    // update product 
+    public Product updateProduct(Long id, ProductRequest productRequest) {
+    
+        validateProductRequest(productRequest);
 
+        // Find the existing product
+        Product existingProduct = findProductById(id);
+    
+        if (existingProduct == null) {
+            throw new IllegalArgumentException("Product not found with id: " + id);
+        }
+    
+        // Update fields
+        existingProduct.setName(productRequest.getName());
+        existingProduct.setPrice(productRequest.getPrice());
+        existingProduct.setQuantity(productRequest.getQuantity());
+    
+        // Save and return the updated product
+        return productRepository.save(existingProduct);
+    }
+
+    private void validateProductRequest(ProductRequest productRequest) {
+        // Validate the input data
+        if (productRequest.getName() == null || productRequest.getName().trim().isEmpty()) {
+            throw new IllegalArgumentException("Product name is required");
+        }
+        if (productRequest.getQuantity() < 0) {
+            throw new IllegalArgumentException("Product quantity cannot be less than zero");
+        }
+        if (productRequest.getPrice() < 0) {
+            throw new IllegalArgumentException("Product price cannot be less than zero");
+        }
+    }
+    
 }
 
