@@ -5,6 +5,8 @@ improvments:
 - product service (inventory management service) could be a seperate project (microservice)
 - notificatin service to send updates to the sellers and users 
 - logging
+- unit tests
+- remove db connection details from code (for prod). Environment Variables or AWS KMS etc. 
 
 
 host: sunkingdb.cfq6yisy4bzh.ap-south-1.rds.amazonaws.com
